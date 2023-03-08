@@ -1,0 +1,14 @@
+.footer {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.footer > p {
+    font-family: Roboto;
+}
+
+.footer_img {
+    height: 20px;
+}

@@ -1,0 +1,66 @@
+.movie-card {
+    width: fit-content;
+    background-color:#F5C518;
+    margin-right: 20px;
+    border-radius: 15px;
+    color: black;
+    font-family: "Roboto";
+  }
+  
+  .movie-card-img {
+    height: 300px;
+    display: block;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  
+  .movie-card-content {
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-card-text > h2 {
+    margin-bottom: 0px;
+    font-size: 18px;
+  }
+  
+  .movie-card-text > p {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .imdb_rating {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+  }
+  
+  .imdb_rating_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .imdb_rating_text > p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .imdb_rating_score {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imdb_logo_img {
+    width: 53px;
+    height: 26px;
+  }
+  
+  .question_icon_img {
+    width: 36px;
+    height: 36px;
+  }
