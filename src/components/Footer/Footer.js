@@ -7,7 +7,7 @@ const Footer = () => {
 }
 		return (
 				<div className="footer">
-            <a href="#">
+            			<a href="#">
 								<img className="footer_img" src={footer_img} alt="logo" onClick={refreshPage} />
 						</a>
 				</div>
