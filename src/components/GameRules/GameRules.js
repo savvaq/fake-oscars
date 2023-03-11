@@ -1,4 +1,5 @@
 import './GameRules.css'
+import MainButton from '../MainButton/MainButton';
 import hero_image from "../img/hero_image.png"
 import number_one from "../img/number_one.png"
 import number_two from "../img/number_two.png"
@@ -17,6 +18,7 @@ const GameRules = () => {
             <span>Earn points if your movie gets prestigious “Fake Oscar”</span>
 					</div>
           <img src={hero_image} alt="" className='hero_image' />
+          <MainButton ButtonText="Start" />
 				</div>
     )
 }

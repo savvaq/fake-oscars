@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     justify-self: center;
+    row-gap: 4rem;
 }
 
 .game-rules-text {
@@ -31,8 +32,4 @@
 .game-rules-text > img {
     align-self: center;
     justify-self: center;
-}
-
-.hero-image {
-    border: 1px solid red;
 }
