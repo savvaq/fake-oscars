@@ -8,6 +8,4 @@ button {
     height: 45px;
     border-radius: 30px;
     border: 0;
-    grid-column-start: span 2;
-    justify-self: center;
 }

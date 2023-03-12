@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<GameRules />} />
           <Route path="/question/:id" element={<Game />} />
+          <Route path="*" element={<h1>Not Found Page</h1>} />          
         </Routes>
       <Footer />
     </>
