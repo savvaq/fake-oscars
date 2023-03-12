@@ -10,11 +10,11 @@ const GameRules = () => {
 				<div className='game-rules-container'>
 					<div className='game-rules-text'>
 						<h1>How To Play The Game</h1>
-            <img src={number_one} alt="" />
+            <div className="circle">1</div>
             <span>4 random movies will be presented to you</span>
-            <img src={number_two} alt="" />
+            <div className="circle">2</div>
             <span>Try to find and select the movie with higher IMDB rating</span>
-            <img src={number_three} alt="" />
+            <div className="circle">3</div>
             <span>Earn points if your movie gets prestigious “Fake Oscar”</span>
 					</div>
           <img src={hero_image} alt="" className='hero_image' />

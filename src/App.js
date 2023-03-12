@@ -1,5 +1,4 @@
 import './App.css';
-import MovieCard from './components/MovieCard/MovieCard.js';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import GameRules from './components/GameRules/GameRules' 
@@ -12,7 +11,7 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" element={<GameRules />} />
-          <Route path="/question1" element={<Game />} />
+          <Route path="/question/:id" element={<Game />} />
         </Routes>
       <Footer />
     </>

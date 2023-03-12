@@ -1,8 +1,10 @@
 .game-rules-container {
     max-width: 1200px;
+    max-height: 640px !important;
     display: grid;
     grid-template-columns: 1fr auto;
     justify-self: center;
+    align-self: center;
     row-gap: 4rem;
 }
 
@@ -29,7 +31,17 @@
     align-self: center;
 }
 
-.game-rules-text > img {
+.circle {
+    background-color: #F5C518;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 1.5rem;
+    font-weight: bold;
     align-self: center;
     justify-self: center;
+
 }
