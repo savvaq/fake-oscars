@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './Game.css'
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
+import MovieList from '../MovieList/MovieList';
 
 const Game = () => {
 
@@ -26,12 +27,13 @@ const Game = () => {
   }, [searchValue])
 
   return (
-    <>
+    <div className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
       <SearchBox search={searchValue} setSearch={setSearchValue} />
       <SearchResults movies={searchResults} />
-      <button class="main-button" onClick={() => setRoundNumber(roundNumber + 1)}>Next</button>
-    </>
+      <MovieList />
+      <button class="main-button" id="game-button" onClick={() => setRoundNumber(roundNumber + 1)}>Sumbit</button>
+    </div>
   )
 }
 

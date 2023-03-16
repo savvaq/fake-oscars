@@ -4,11 +4,19 @@ const SearchResults = (props) => {
     
     return (
       <>
-        <ul class="movie-search-results">
+        <div class="movie-search-results-wrapper">
             {props.movies.map((movie) => (
-                <li key={movie.imdbID}>{movie.Title}></li>
+                <div class="movie-search-result-wrapper">
+                  <div class="movie-search-result-content">
+                    <img className="movie-search-result-img" src={movie.Poster} alt="logo" />
+                    <div className="movie-search-result-text">
+                      <h3>{movie.Title}</h3>
+                      <span>{movie.Year}</span>
+                    </div>
+                  </div>
+                </div>
             ))}
-        </ul>
+        </div>
       </>
     )
   }

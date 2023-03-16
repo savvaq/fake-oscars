@@ -1,10 +1,11 @@
 .movie-card {
-    width: fit-content;
+    width: 200px;
+    height: 420px;
     background-color:#F5C518;
-    margin-right: 20px;
     border-radius: 15px;
     color: black;
     font-family: "Roboto";
+    justify-self: center;
   }
   
   .movie-card-img {

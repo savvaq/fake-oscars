@@ -23,4 +23,18 @@ html body {
     height: 45px;
     border-radius: 30px;
     border: 0;
+    cursor: pointer;
+}
+
+.main-button:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 55px;
+    color: #F5C518;
 }

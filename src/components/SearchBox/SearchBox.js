@@ -3,14 +3,14 @@ import './SearchBox.css'
 const SearchBox = (props) => {
   
   return (
-    <div className="homepage-search">
-      <h2>Find a Movie to Nominate</h2>
-      <form className="homepage-search-form">  
+    <div className="searchbox">
+      <h2>Find a movie with higher IMDB rating than the ones below</h2>
+      <form className="searchbox-form">
         <input 
-          className="homepage-search-box"
+          className="searchbox-box"
           value={props.value}
           onChange={(event) => props.setSearch(event.target.value)}
-          placeholder="Search for a movie here...."
+          placeholder="search for a movie here..."
         />
       </form>
     </div>

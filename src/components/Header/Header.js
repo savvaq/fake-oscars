@@ -1,16 +1,13 @@
 import './Header.css'
 import logo from '../img/logo.png'
+import { useNavigate } from "react-router-dom"
 
 const Header = () => {
-
-  const refreshPage = () => {
-    window.location.reload();
-  }
 
   return (
     <div className="header">
       <a href="#">
-        <img className="logo-img" src={logo} alt="logo" onClick={refreshPage} />
+        <img className="logo-img" src={logo} alt="logo" onClick={useNavigate('/root')} />
       </a>
     </div>
   )

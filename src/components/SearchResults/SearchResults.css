@@ -1,3 +1,43 @@
-.movie-search-results {
+.movie-search-results-wrapper {
+    width: 560px;
+    background-color: rgb(49, 48, 48);
+    margin-top: -1.6rem;
+    border-radius: 10px;
+}
+
+.movie-search-result-wrapper {
+    font-family: 'Roboto';
     color: white;
+    border-bottom: 0.01em rgb(90, 88, 88) solid;
+    cursor: pointer;
+}
+
+.movie-search-result-content {
+    display: flex;
+    padding: 0.5rem;
+}
+
+.movie-search-result-wrapper:hover {
+    background-color: rgb(92, 91, 91);
+}
+
+.movie-search-result-text {
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.movie-search-result-text > h3 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.movie-search-result-text > span {
+    font-size: 12px;
+    margin-top: 0.5rem;
+}
+
+.movie-search-result-img {
+    width: 50px;
 }

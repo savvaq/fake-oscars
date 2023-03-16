@@ -15,10 +15,6 @@
 }
 
 .game-rules-text > h1 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 55px;
-    color: #F5C518;
     grid-column-start: span 2;
     margin: 0;
     align-self: center;
