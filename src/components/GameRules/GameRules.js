@@ -1,5 +1,4 @@
 import './GameRules.css'
-import MainButton from '../MainButton/MainButton';
 import hero_image from "../img/hero_image.png"
 import { Link } from "react-router-dom";
 
@@ -17,7 +16,7 @@ const GameRules = () => {
 					</div>
           <img src={hero_image} alt="" className='hero_image' />
           <Link to="/question/1">
-            <MainButton ButtonText="Start" />
+            <button class="main-button">Start</button>
           </Link>
 				</div>
     )

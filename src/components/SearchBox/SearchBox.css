@@ -1,0 +1,29 @@
+.homepage-search {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .homepage-search > h2 {
+    color: #EEC747;
+    margin-bottom: 7px;
+  }
+  
+  .homepage-search-form {
+    height: 40px;
+  }
+  
+  .homepage-search-box {
+    width: 300px;
+    border: none;
+    border-radius: 2px;
+    height: 100%;
+  }
+  
+  input {
+    padding-left: 10px;
+  }
