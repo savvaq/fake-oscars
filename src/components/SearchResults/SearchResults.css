@@ -1,8 +1,11 @@
 .movie-search-results-wrapper {
     width: 560px;
     background-color: rgb(49, 48, 48);
-    margin-top: -1.6rem;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
+    grid-row-start: 3;
+    position: absolute;
+    height: 400px;
+    overflow-y: scroll;
 }
 
 .movie-search-result-wrapper {

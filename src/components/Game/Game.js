@@ -29,8 +29,10 @@ const Game = () => {
   return (
     <div className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
-      <SearchBox search={searchValue} setSearch={setSearchValue} />
-      <SearchResults movies={searchResults} />
+      <div className='search-wrapper'>
+        <SearchBox search={searchValue} setSearch={setSearchValue} />
+        <SearchResults movies={searchResults} />
+      </div>
       <MovieList />
       <button class="main-button" id="game-button" onClick={() => setRoundNumber(roundNumber + 1)}>Sumbit</button>
     </div>

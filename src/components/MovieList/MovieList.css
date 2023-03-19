@@ -3,4 +3,5 @@
     grid-template-columns: repeat(6, auto);
     grid-gap: 3rem;
     align-items: end;
+    max-width: 1600px;
 }
