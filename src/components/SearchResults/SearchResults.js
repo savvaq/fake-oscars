@@ -1,4 +1,5 @@
 import './SearchResults.css'
+import MovieList from '../MovieList/MovieList';
 
 const SearchResults = (props) => {
     
@@ -6,7 +7,7 @@ const SearchResults = (props) => {
       <>
         <div class="movie-search-results-wrapper">
             {props.movies.map((movie) => (
-                <div class="movie-search-result-wrapper">
+                <div class="movie-search-result-wrapper" key={movie.imdbID} handleNominationClick={() => props.handleNominationClick(movie)}>
                   <div class="movie-search-result-content">
                     <img className="movie-search-result-img" src={movie.Poster} alt="logo" />
                     <div className="movie-search-result-text">

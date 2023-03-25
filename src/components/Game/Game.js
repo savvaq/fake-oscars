@@ -1,38 +1,18 @@
 import { useState, useEffect } from 'react';
 import './Game.css'
-import SearchBox from '../SearchBox/SearchBox';
-import SearchResults from '../SearchResults/SearchResults';
 import MovieList from '../MovieList/MovieList';
+import Search from '../Search/Search';
 
 const Game = () => {
 
   const [roundNumber, setRoundNumber] = useState(1);
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState([])
-
-  const searchMovies = async (search) => {
-    const url = `https://www.omdbapi.com/?apikey=df39bfa7&s=${search}`
-    const response = await fetch(url);
-    const responseJson = await response.json();
-
-    if(responseJson.Search) {
-      setSearchResults(responseJson.Search)
-    }
-
-    console.log(searchResults);
-  }
-
-  useEffect(() => {
-    searchMovies(searchValue);
-  }, [searchValue])
+  // const [score, setScore] = useState(0);
+  // const [selectedMovie, setSelectedMovie] = useState([]);
 
   return (
     <div className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
-      <div className='search-wrapper'>
-        <SearchBox search={searchValue} setSearch={setSearchValue} />
-        <SearchResults movies={searchResults} />
-      </div>
+      <div className='search-wrapper'><Search /></div>
       <MovieList />
       <button class="main-button" id="game-button" onClick={() => setRoundNumber(roundNumber + 1)}>Sumbit</button>
     </div>
@@ -40,3 +20,5 @@ const Game = () => {
 }
 
 export default Game;
+
+// 
