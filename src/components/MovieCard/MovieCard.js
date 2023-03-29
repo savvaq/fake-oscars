@@ -18,7 +18,10 @@ const MovieCard = (props) => {
               <p>Rating</p>
             </div>
             <div className="imdb_rating_score">
-              <img src={question_icon} alt="imdb_logo" className='question_icon_img' />
+              {
+                props.imdbScore ? <p>{props.imdbScore}</p> :
+                <img src={question_icon} alt="imdb_logo" className='question_icon_img' />
+              }
             </div>
           </div>
         </div>

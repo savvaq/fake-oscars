@@ -20,30 +20,61 @@ const GetMovie = async () => {
 }
 
 const Game = () => {
-  const [placeholder, setPlaceholder] = useState([]);
   const [roundNumber, setRoundNumber] = useState(1);
-  const [nomination, setNomination] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [movies, setMovies] = useState([]);
-
-  // const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0);
+  const [submissions, setSubmissions] = useState([]);
+  
   const placeholderMovie = [
     {
         Title: "Titanic",
         Year: "1997",
-        Poster: "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
+        Poster: "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
     }
   ];
+
+  console.log("loaded");
   
   const addPlaceholder = () => {
-    setPlaceholder(() => [...placeholder,placeholderMovie[0]]);
+    setMovies(() => [...movies,placeholderMovie[0]]);
+  }
+
+  const updateScore = () => {
+    let maxScore = Math.max(...movies.map(movie => movie.IMDBScore))
+    let nomiationScore = Number(movies[4].IMDBScore);
+    console.log(`nomination rating is: ${nomiationScore} typeof: ${typeof nomiationScore}`);
+    console.log(`max score is: ${maxScore} typeof: ${typeof maxScore}`);
+    if (nomiationScore < maxScore) {
+      console.log('you lose');
+    } else {
+      setScore(score + 1);
+      setSubmissions([...submissions, movies[4].Title]);
+    }
+  }
+  
+  const AssignIMDBScore = async () => {
+    for (let i = 0; i < movies.length; i++) {
+      const url = `https://www.omdbapi.com/?apikey=df39bfa7&t=${movies[i].Title}`
+      const response = await fetch(url);
+      const responseJson = await response.json();
+      
+      if (movies[i].Title === responseJson.Title) {
+        movies[i].IMDBScore = responseJson.imdbRating;
+      }
+
+      setMovies(movies);
+    }
+    updateScore();
   }
 
   useEffect(() => {
 		for (let i = 0; i < 2; i++) {
+      console.log(1);
 			GetMovie().then((movie) => {
+        console.log(2);
 				if (movie) {
 					setMovies((movies) => [...movies, movie]);
 				};
@@ -62,6 +93,18 @@ const Game = () => {
     }
   }
 
+  const startNewRound = () => {
+    setMovies([]);
+
+    for (let i = 0; i < 4; i++) {
+      GetMovie().then((movie) => {
+        if (movie) {
+          setMovies((movies) => [...movies, movie]);
+        };
+      });
+    }
+  };
+
   useEffect(() => {
     searchMovies(searchValue);
   }, [searchValue])
@@ -69,14 +112,16 @@ const Game = () => {
   return (
     <div className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
+      <h2 id='score-result'>Score: {score} / 5</h2>
       <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
       {
       showResults && searchValue.length > 0 ? 
       <SearchResults movies={searchResults} />:null
       }
-      <MovieList placeholder={placeholder} movies={movies} />
+      <MovieList movies={movies} />
       <button onClick={() => addPlaceholder()} class="main-button" id="game-button">Set Nomiation</button>
-      <button class="main-button" id="game-button" onClick={() => setRoundNumber(roundNumber + 1)}>Sumbit</button>
+      <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
+      <button onClick={() => startNewRound()} class="main-button" id="game-button">Next Round</button>
     </div>
   )
 }

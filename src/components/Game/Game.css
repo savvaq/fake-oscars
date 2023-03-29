@@ -16,3 +16,7 @@
 #game-button {
     margin-top: 4rem;
 }
+
+#score-result {
+    color: white;
+}
