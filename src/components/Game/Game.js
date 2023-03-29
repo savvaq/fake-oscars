@@ -28,18 +28,13 @@ const Game = () => {
   const [score, setScore] = useState(0);
   const [submissions, setSubmissions] = useState([]);
   
-  const placeholderMovie = [
-    {
-        Title: "Titanic",
-        Year: "1997",
-        Poster: "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
+  const addMovie = (movie) => {
+    if (movies.length < 5) {
+      setMovies([...movies, movie]);     
+    } else {
+      movies.pop();
+      setMovies([...movies, movie]);
     }
-  ];
-
-  console.log("loaded");
-  
-  const addPlaceholder = () => {
-    setMovies(() => [...movies,placeholderMovie[0]]);
   }
 
   const updateScore = () => {
@@ -116,12 +111,11 @@ const Game = () => {
       <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
       {
       showResults && searchValue.length > 0 ? 
-      <SearchResults movies={searchResults} />:null
+      <SearchResults movies={searchResults} addMovie={addMovie} />:null
       }
       <MovieList movies={movies} />
-      <button onClick={() => addPlaceholder()} class="main-button" id="game-button">Set Nomiation</button>
       <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
-      <button onClick={() => startNewRound()} class="main-button" id="game-button">Next Round</button>
+      <button onClick={() => startNewRound() && setRoundNumber(roundNumber + 1)} class="main-button" id="game-button">Next Round</button>
     </div>
   )
 }
