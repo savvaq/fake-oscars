@@ -4,6 +4,7 @@ import './Game.css'
 import MovieList from '../MovieList/MovieList';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
+import { motion } from "framer-motion";
 
 const GetMovie = async () => {
 	const randomNumber = Math.floor(Math.random() * 5);
@@ -27,28 +28,42 @@ const Game = () => {
   const [movies, setMovies] = useState([]);
   const [score, setScore] = useState(0);
   const [submissions, setSubmissions] = useState([]);
-  
+  const [roundEndMessage, setRoundEndMessage] = useState('');
+  const [winner, setWinner] = useState([]);
+
   const addMovie = (movie) => {
     if (movies.length < 5) {
       setMovies([...movies, movie]);     
     } else {
       movies.pop();
       setMovies([...movies, movie]);
+      setShowResults(false);    }
+  }
+
+  console.log("reloaded!")
+
+  // function to find a movie with the highest IMDB score and add it to the winners array
+  const findWinner = () => {
+    let maxScore = Math.max(...movies.map(movie => movie.IMDBScore));
+    let winner = movies.find(movie => movie.IMDBScore === maxScore);
+    setWinner([...winner, winner]);
+  };
+
+  const updateScore = () => {
+    let maxScore = Math.max(...movies.map(movie => movie.IMDBScore));
+    let nomiationScore = Number(movies[4].IMDBScore);
+    if (nomiationScore < maxScore) {
+      setRoundEndMessage(`Sorry, ${movies[4].Title} was not the highest rated movie.`);
+    } else {
+      setScore(score + 1);
+      setRoundEndMessage(`Congratulations, ${movies[4].Title} was the highest rated movie!`);
+      setSubmissions([...submissions, movies[4].Title]);
+      findWinner();
+      console.log(winner);
     }
   }
 
-  const updateScore = () => {
-    let maxScore = Math.max(...movies.map(movie => movie.IMDBScore))
-    let nomiationScore = Number(movies[4].IMDBScore);
-    console.log(`nomination rating is: ${nomiationScore} typeof: ${typeof nomiationScore}`);
-    console.log(`max score is: ${maxScore} typeof: ${typeof maxScore}`);
-    if (nomiationScore < maxScore) {
-      console.log('you lose');
-    } else {
-      setScore(score + 1);
-      setSubmissions([...submissions, movies[4].Title]);
-    }
-  }
+  console.log(movies.length)
   
   const AssignIMDBScore = async () => {
     for (let i = 0; i < movies.length; i++) {
@@ -59,18 +74,14 @@ const Game = () => {
       if (movies[i].Title === responseJson.Title) {
         movies[i].IMDBScore = responseJson.imdbRating;
       }
-
-      setMovies(movies);
     }
     updateScore();
   }
 
   useEffect(() => {
 		for (let i = 0; i < 2; i++) {
-      console.log(1);
 			GetMovie().then((movie) => {
-        console.log(2);
-				if (movie) {
+				if (movies.length < 4) {
 					setMovies((movies) => [...movies, movie]);
 				};
 			});
@@ -108,14 +119,23 @@ const Game = () => {
     <div className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
       <h2 id='score-result'>Score: {score} / 5</h2>
-      <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
+      {
+        roundEndMessage ? 
+        <h2 id='round-end-message'>{roundEndMessage}</h2>
+        :
+        <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
+      }
       {
       showResults && searchValue.length > 0 ? 
       <SearchResults movies={searchResults} addMovie={addMovie} />:null
       }
       <MovieList movies={movies} />
-      <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
-      <button onClick={() => startNewRound() && setRoundNumber(roundNumber + 1)} class="main-button" id="game-button">Next Round</button>
+      {
+        roundEndMessage ? 
+        <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('')} class="main-button" id="game-button">Next Round</button>
+        :
+        <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
+      }
     </div>
   )
 }

@@ -5,7 +5,7 @@
     max-width: 1200px;
     justify-self: center;
     align-self: center;
-    grid-template-rows: repeat(4,auto);
+    grid-template-rows: repeat(5,auto);
     grid-row-gap: 2rem;
 }
 
@@ -13,10 +13,10 @@
     margin: 0;
 }
 
-#game-button {
-    margin-top: 4rem;
+#score-result {
+    color: white;
 }
 
-#score-result {
+#round-end-message {
     color: white;
 }

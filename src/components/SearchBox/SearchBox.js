@@ -9,8 +9,7 @@ const SearchBox = (props) => {
         <input 
           className="searchbox-box"
           value={props.value}
-          onChange={(event) => props.setSearch(event.target.value)}
-          // onBlur={(event) => props.setShowResults(false)}
+          onChange={(event) => props.setSearch(event.target.value)}          
           placeholder="search for a movie here..."
         />
       </form>
