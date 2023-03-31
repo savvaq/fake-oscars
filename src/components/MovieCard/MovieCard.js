@@ -6,16 +6,20 @@ import { motion } from "framer-motion";
 
 
 const MovieCard = (props) => {
-
-  // find highst rated movie in the array
- 
-
+  const movieCardDivStyle = props.winner ? 'movie-card-winner' : 'movie-card';
+  const trimTitle = (title) => {
+    if (title.length > 20) {
+      return title.slice(0, 30) + '...';
+    } else {
+      return title;
+    }
+  };
   return (
-      <div className="movie-card">
+      <div className={movieCardDivStyle}>
         <img src={props.image} alt="poster" className="movie-card-img" />          
         <div className="movie-card-content">
           <div className="movie-card-text">
-            <h2>{props.title}</h2>
+            <h2>{trimTitle(props.title)}</h2>
             <p>Year: {props.year}</p>
           </div>
           <div className="imdb_rating">

@@ -4,11 +4,12 @@ import './Game.css'
 import MovieList from '../MovieList/MovieList';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
+import RoundEnd from '../RoundEnd/RoundEnd';
 import { motion } from "framer-motion";
 
 const GetMovie = async () => {
 	const randomNumber = Math.floor(Math.random() * 5);
-	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","bath","airplane","snake","castle","water"]
+	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","bath","airplane","snake","castle","water","titanic","schawshank","undersand","harry"]
 	const randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
 	
 	const randomUrl = `https://www.omdbapi.com/?apikey=df39bfa7&s=${randomWord}`
@@ -28,43 +29,50 @@ const Game = () => {
   const [movies, setMovies] = useState([]);
   const [score, setScore] = useState(0);
   const [submissions, setSubmissions] = useState([]);
-  const [roundEndMessage, setRoundEndMessage] = useState('');
+  const [roundEndMessage, setRoundEndMessage] = useState({});
   const [winner, setWinner] = useState([]);
 
   const addMovie = (movie) => {
     if (movies.length < 5) {
-      setMovies([...movies, movie]);     
+      setMovies([...movies, movie]);
+      setShowResults(false);      
     } else {
       movies.pop();
       setMovies([...movies, movie]);
       setShowResults(false);    }
   }
 
-  console.log("reloaded!")
-
-  // function to find a movie with the highest IMDB score and add it to the winners array
-  const findWinner = () => {
-    let maxScore = Math.max(...movies.map(movie => movie.IMDBScore));
-    let winner = movies.find(movie => movie.IMDBScore === maxScore);
-    setWinner([...winner, winner]);
-  };
-
   const updateScore = () => {
     let maxScore = Math.max(...movies.map(movie => movie.IMDBScore));
-    let nomiationScore = Number(movies[4].IMDBScore);
-    if (nomiationScore < maxScore) {
-      setRoundEndMessage(`Sorry, ${movies[4].Title} was not the highest rated movie.`);
+    maxScore = maxScore.toString();
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].IMDBScore == maxScore) {
+        movies[i].winner = true;
+      } else {
+        movies[i].winner = false;
+      }
+    }
+    maxScore = Number(maxScore);
+    let nominationScore = Number(movies[4].IMDBScore);
+    if (nominationScore < maxScore) {
+      setRoundEndMessage({
+        message: `Sorry, ${movies[4].Title} was not the highest rated movie!`,
+        type: 'loser'
+     });
     } else {
       setScore(score + 1);
-      setRoundEndMessage(`Congratulations, ${movies[4].Title} was the highest rated movie!`);
+      setRoundEndMessage({
+        message: `Well done, ${movies[4].Title} was the highest rated movie!`,
+        type: 'winner'
+      });
+      console.log(roundEndMessage)
       setSubmissions([...submissions, movies[4].Title]);
-      findWinner();
-      console.log(winner);
     }
   }
-
-  console.log(movies.length)
   
+  console.log(movies);
+  console.log(roundEndMessage);
+
   const AssignIMDBScore = async () => {
     for (let i = 0; i < movies.length; i++) {
       const url = `https://www.omdbapi.com/?apikey=df39bfa7&t=${movies[i].Title}`
@@ -101,6 +109,7 @@ const Game = () => {
 
   const startNewRound = () => {
     setMovies([]);
+    setWinner([]);
 
     for (let i = 0; i < 4; i++) {
       GetMovie().then((movie) => {
@@ -116,12 +125,15 @@ const Game = () => {
   }, [searchValue])
 
   return (
-    <div className='game-wrapper'>
+    <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 3 }}
+    className='game-wrapper'>
       <h1>Round {roundNumber}</h1>
-      <h2 id='score-result'>Score: {score} / 5</h2>
       {
-        roundEndMessage ? 
-        <h2 id='round-end-message'>{roundEndMessage}</h2>
+        roundEndMessage.message ?
+        <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
         :
         <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
       }
@@ -129,14 +141,14 @@ const Game = () => {
       showResults && searchValue.length > 0 ? 
       <SearchResults movies={searchResults} addMovie={addMovie} />:null
       }
-      <MovieList movies={movies} />
+      <MovieList movies={movies} winner={winner} />
       {
-        roundEndMessage ? 
+        roundEndMessage.message ? 
         <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('')} class="main-button" id="game-button">Next Round</button>
         :
         <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
       }
-    </div>
+    </motion.div>
   )
 }
 

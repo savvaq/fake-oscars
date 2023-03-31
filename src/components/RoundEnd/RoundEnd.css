@@ -1,0 +1,60 @@
+.round-end-winner {
+    background-color: #F5C518;
+    font-family: 'Roboto', sans-serif;
+    border: 5px solid green;
+    width: 800px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
+.round-end-loser {
+    background-color: #F5C518;
+    font-family: 'Roboto', sans-serif;
+    border: 5px solid red;
+    width: 800px;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
+#round-end-icon-win {
+    width: 50px;
+    color: green;
+    height: 50px;
+}
+
+#round-end-icon-lose {
+    width: 50px;
+    color: red;
+    height: 50px;
+}
+
+#round-end-score {
+    background-color: black;
+    width: 130px;
+    height: 36px;
+    color: #F5C518;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#score-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#score-wrapper > span {
+    font-size: 16px;
+    font-weight: bold;
+}

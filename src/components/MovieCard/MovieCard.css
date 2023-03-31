@@ -1,19 +1,30 @@
 .movie-card {
-    width: 200px;
-    height: 450px;
-    background-color:#F5C518;
-    border-radius: 15px;
-    color: black;
-    font-family: "Roboto";
-    justify-self: center;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-self: center;
-    opacity: 1;
-    transform: translateY(15px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  
+  width: 200px;
+  height: 450px;
+  background-color:#F5C518;
+  border-radius: 15px;
+  color: black;
+  font-family: "Roboto";
+  justify-self: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-self: center;
+}
+
+.movie-card-winner {
+  width: 200px;
+  height: 450px;
+  background-color:#F5C518;
+  border-radius: 21px;
+  border: 7px solid green;
+  color: black;
+  font-family: "Roboto";
+  justify-self: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-self: center;
+}
+
   .movie-card-img {
     height: 300px;
     width: 100%;
