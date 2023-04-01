@@ -124,6 +124,9 @@ const Game = () => {
     searchMovies(searchValue);
   }, [searchValue])
 
+  const gameButtonVariants = movies.length === 5 ? "main-button" : "main-button-disabled";
+  const buttonText = roundNumber === 5 ? "Finish Game" : "Next Round";
+
   return (
     <motion.div 
     initial={{ opacity: 0 }}
@@ -144,9 +147,25 @@ const Game = () => {
       <MovieList movies={movies} winner={winner} />
       {
         roundEndMessage.message ? 
-        <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('')} class="main-button" id="game-button">Next Round</button>
+        <motion.button 
+        onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('')} 
+        whileHover={{ scale: 1.2 }}
+        onHoverStart={e => {}}
+        onHoverEnd={e => {}}
+        whileTap={{ scale: 0.8 }}
+        class="main-button">
+          {buttonText}
+        </motion.button>
         :
-        <button onClick={() => AssignIMDBScore()} class="main-button" id="game-button">Sumbit</button>
+        <motion.button
+        whileHover={{ scale: 1.2 }}
+        onHoverStart={e => {}}
+        onHoverEnd={e => {}}
+        whileTap={{ scale: 0.8 }}
+        onClick={() => AssignIMDBScore()} 
+        class={gameButtonVariants}>
+          Sumbit
+        </motion.button>
       }
     </motion.div>
   )

@@ -6,7 +6,7 @@ const Header = () => {
 
   return (
     <div className="header">
-      <a href="#">
+      <a href="/">
         <img className="logo-img" src={logo} alt="logo" onClick={useNavigate('/root')} />
       </a>
     </div>

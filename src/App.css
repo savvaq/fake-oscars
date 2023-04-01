@@ -8,7 +8,6 @@ html body {
 #root {
     min-height: 100vh;
     display: grid;
-    /* grid-template-columns: 100%; */
     grid-template-rows: auto 1fr auto;
     row-gap: 4rem;
 }
@@ -26,10 +25,8 @@ html body {
     cursor: pointer;
 }
 
-.main-button:hover {
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+.main-button-disabled {
+    visibility: hidden;
 }
 
 h1 {
