@@ -5,11 +5,11 @@ import MovieList from '../MovieList/MovieList';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import RoundEnd from '../RoundEnd/RoundEnd';
-import { motion } from "framer-motion";
+import GameResults from '../GameResults/GameResults';
 
 const GetMovie = async () => {
 	const randomNumber = Math.floor(Math.random() * 5);
-	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","bath","airplane","snake","castle","water","titanic","schawshank","undersand","harry"]
+	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","airplane","snake","castle","water","titanic","harry"]
 	const randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
 	
 	const randomUrl = `https://www.omdbapi.com/?apikey=df39bfa7&s=${randomWord}`
@@ -31,15 +31,17 @@ const Game = () => {
   const [submissions, setSubmissions] = useState([]);
   const [roundEndMessage, setRoundEndMessage] = useState({});
   const [winner, setWinner] = useState([]);
+  const [gameStatus, setGameStatus] = useState('playing');
 
   const addMovie = (movie) => {
     if (movies.length < 5) {
-      setMovies([...movies, movie]);
+      setMovies([...movies, movie]); 
       setShowResults(false);      
     } else {
       movies.pop();
       setMovies([...movies, movie]);
-      setShowResults(false);    }
+      setShowResults(false);    
+    }
   }
 
   const updateScore = () => {
@@ -59,19 +61,16 @@ const Game = () => {
         message: `Sorry, ${movies[4].Title} was not the highest rated movie!`,
         type: 'loser'
      });
+     setSubmissions([...submissions, movies[4]]);
     } else {
       setScore(score + 1);
       setRoundEndMessage({
         message: `Well done, ${movies[4].Title} was the highest rated movie!`,
         type: 'winner'
       });
-      console.log(roundEndMessage)
-      setSubmissions([...submissions, movies[4].Title]);
+      setSubmissions([...submissions, movies[4]]);
     }
   }
-  
-  console.log(movies);
-  console.log(roundEndMessage);
 
   const AssignIMDBScore = async () => {
     for (let i = 0; i < movies.length; i++) {
@@ -120,54 +119,52 @@ const Game = () => {
     }
   };
 
+  const checkGameStatus = () => {
+    if (roundNumber > 4) {
+      setGameStatus('finished');
+    }
+  };
+
   useEffect(() => {
     searchMovies(searchValue);
   }, [searchValue])
 
   const gameButtonVariants = movies.length === 5 ? "main-button" : "main-button-disabled";
   const buttonText = roundNumber === 5 ? "Finish Game" : "Next Round";
-
+  
+  console.log(roundNumber);
+  console.log(gameStatus);
+  
   return (
-    <motion.div 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 3 }}
-    className='game-wrapper'>
-      <h1>Round {roundNumber}</h1>
-      {
-        roundEndMessage.message ?
-        <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
-        :
-        <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
-      }
-      {
-      showResults && searchValue.length > 0 ? 
-      <SearchResults movies={searchResults} addMovie={addMovie} />:null
-      }
-      <MovieList movies={movies} winner={winner} />
-      {
-        roundEndMessage.message ? 
-        <motion.button 
-        onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('')} 
-        whileHover={{ scale: 1.2 }}
-        onHoverStart={e => {}}
-        onHoverEnd={e => {}}
-        whileTap={{ scale: 0.8 }}
-        class="main-button">
-          {buttonText}
-        </motion.button>
-        :
-        <motion.button
-        whileHover={{ scale: 1.2 }}
-        onHoverStart={e => {}}
-        onHoverEnd={e => {}}
-        whileTap={{ scale: 0.8 }}
-        onClick={() => AssignIMDBScore()} 
-        class={gameButtonVariants}>
-          Sumbit
-        </motion.button>
-      }
-    </motion.div>
+    // gameStatus === 'finished' ?
+    <GameResults score={score} submissions={submissions} />
+    // :
+    // <div className='game-wrapper'>
+    //   <h1>Round {roundNumber}</h1>
+    //   {
+    //     roundEndMessage.message ?
+    //     <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
+    //     :
+    //     <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
+    //   }
+    //   {
+    //   showResults && searchValue.length > 0 ? 
+    //   <SearchResults movies={searchResults} addMovie={addMovie} />:null
+    //   }
+    //   <MovieList movies={movies} winner={winner} />
+    //   {
+    //     roundEndMessage.message ? 
+    //     <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('') & checkGameStatus() } 
+    //     class="main-button">
+    //       {buttonText}
+    //     </button>
+    //     :
+    //     <button onClick={() => AssignIMDBScore()} 
+    //     class={gameButtonVariants}>
+    //       Sumbit
+    //     </button>
+    //   }
+    // </div>
   )
 }
 

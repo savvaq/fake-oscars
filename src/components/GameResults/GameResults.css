@@ -1,0 +1,35 @@
+.game-results-wrapper {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: repeat(4,auto);
+}
+
+.game-results-wrapper > h1 {
+    margin: 0;
+}
+
+#final-score {
+    display: flex;
+    align-items: center;
+}
+
+#final-score-text {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+}
+
+#final-score-number {
+    background-color: #F5C518;
+    width: 150px;
+    height: 150px;
+    color: black;
+    text-align: center;
+    line-height: 150px;
+    border-radius: 50%;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+    margin-left: 40px;
+}
