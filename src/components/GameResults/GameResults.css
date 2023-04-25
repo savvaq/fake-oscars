@@ -3,15 +3,23 @@
     justify-items: center;
     align-items: center;
     grid-template-rows: repeat(4,auto);
+    grid-template-columns: 350px 350px;
+    max-width: 1200px;
+    align-self: center;
+    justify-self: center;
+    row-gap: 40px;
 }
 
 .game-results-wrapper > h1 {
     margin: 0;
+    grid-column-start: span 2;
 }
 
 #final-score {
     display: flex;
     align-items: center;
+    margin: 0;
+    grid-column-start: span 2;
 }
 
 #final-score-text {
@@ -32,4 +40,19 @@
     font-weight: bold;
     font-family: 'Outfit', sans-serif;
     margin-left: 40px;
+}
+
+#highest-selected-movie {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#lowest-selected-movie {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#play-again-button {
+    grid-column-start: span 2;
+    margin-top: 40px;
 }

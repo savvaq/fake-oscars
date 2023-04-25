@@ -136,35 +136,35 @@ const Game = () => {
   console.log(gameStatus);
   
   return (
-    // gameStatus === 'finished' ?
+    gameStatus === 'finished' ?
     <GameResults score={score} submissions={submissions} />
-    // :
-    // <div className='game-wrapper'>
-    //   <h1>Round {roundNumber}</h1>
-    //   {
-    //     roundEndMessage.message ?
-    //     <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
-    //     :
-    //     <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
-    //   }
-    //   {
-    //   showResults && searchValue.length > 0 ? 
-    //   <SearchResults movies={searchResults} addMovie={addMovie} />:null
-    //   }
-    //   <MovieList movies={movies} winner={winner} />
-    //   {
-    //     roundEndMessage.message ? 
-    //     <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('') & checkGameStatus() } 
-    //     class="main-button">
-    //       {buttonText}
-    //     </button>
-    //     :
-    //     <button onClick={() => AssignIMDBScore()} 
-    //     class={gameButtonVariants}>
-    //       Sumbit
-    //     </button>
-    //   }
-    // </div>
+    :
+    <div className='game-wrapper'>
+      <h1>Round {roundNumber}</h1>
+      {
+        roundEndMessage.message ?
+        <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
+        :
+        <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
+      }
+      {
+      showResults && searchValue.length > 0 ? 
+      <SearchResults movies={searchResults} addMovie={addMovie} />:null
+      }
+      <MovieList movies={movies} winner={winner} />
+      {
+        roundEndMessage.message ? 
+        <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('') & checkGameStatus() } 
+        class="main-button">
+          {buttonText}
+        </button>
+        :
+        <button onClick={() => AssignIMDBScore()} 
+        class={gameButtonVariants}>
+          Sumbit
+        </button>
+      }
+    </div>
   )
 }
 
