@@ -45,3 +45,22 @@
     grid-column-start: span 2;
     justify-self: center;
 }
+
+@media (max-width: 400px) {
+    .game-rules-container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .hero_image {
+        height: 200px;
+        grid-row-start: 1;
+    }
+
+    .game-rules-container {
+        grid-row-start: 2;
+    }
+
+
+}

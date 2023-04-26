@@ -1,7 +1,20 @@
 import './GameResults.css'
 import MovieCard from '../MovieCard/MovieCard';
+import { Link } from "react-router-dom";
 
 const GameResults = (props) => {
+
+    const highestSelectedMovie = props.submissions.reduce((highest, current) => {
+        return highest.IMDBScore > current.IMDBScore ? highest : current;
+    });
+
+    const lowestSelectedMovie = props.submissions.reduce((lowest, current) => {
+        return lowest.IMDBScore < current.IMDBScore ? lowest : current;
+    });
+
+    // console.log(highestSelectedMovie);
+    // console.log(lowestSelectedMovie);
+
     return (
         <div className='game-results-wrapper'>
             <h1>Well Played!</h1>
@@ -11,13 +24,15 @@ const GameResults = (props) => {
             </div>
             <div id="highest-selected-movie">
                 <p>Higest selected movie</p>
-                <MovieCard image={props.submissions[0].Poster} year={props.submissions[0].Year} title={props.submissions[0].Title} imdbScore={props.submissions[0].IMDBScore} />
+                <MovieCard image={highestSelectedMovie.Poster} year={highestSelectedMovie.Year} title={highestSelectedMovie.Title} imdbScore={highestSelectedMovie.IMDBScore} />
             </div>
             <div id="lowest-selected-movie">
                 <p>Lowest selected movie</p>
-                <MovieCard image={props.submissions[4].Poster} year={props.submissions[4].Year} title={props.submissions[4].Title} imdbScore={props.submissions[4].IMDBScore} />
+                <MovieCard image={lowestSelectedMovie.Poster} year={lowestSelectedMovie.Year} title={lowestSelectedMovie.Title} imdbScore={lowestSelectedMovie.IMDBScore} />
             </div>
-            <button className='main-button' id="play-again-button">Play Again</button>
+            <Link to="/">
+                <button Link to="/" class="main-button">Play Again</button>
+            </Link>
         </div>
     )    
 };

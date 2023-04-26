@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import './Game.css'
+import './Game.css';
 import MovieList from '../MovieList/MovieList';
 import SearchBox from '../SearchBox/SearchBox';
 import SearchResults from '../SearchResults/SearchResults';
 import RoundEnd from '../RoundEnd/RoundEnd';
 import GameResults from '../GameResults/GameResults';
+import ErrorBar from '../ErrorBar/ErrorBar';
 
 const GetMovie = async () => {
 	const randomNumber = Math.floor(Math.random() * 5);
@@ -32,12 +33,31 @@ const Game = () => {
   const [roundEndMessage, setRoundEndMessage] = useState({});
   const [winner, setWinner] = useState([]);
   const [gameStatus, setGameStatus] = useState('playing');
-
+  const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+  const [errorMessageText, setErrorMessageText] = useState('');
+  
   const addMovie = (movie) => {
-    if (movies.length < 5) {
-      setMovies([...movies, movie]); 
-      setShowResults(false);      
-    } else {
+    let movieAlreadyInList = false;
+    for (let i = 0; i < submissions.length; i++) {
+      if (submissions[i].imdbID === movie.imdbID) {
+        setErrorMessageOpen(true);
+        setShowResults(false); 
+        setErrorMessageText(`You have already nominated ${movie.Title} before! Please select a different one`);
+        movieAlreadyInList = true;
+     }
+    }
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].imdbID === movie.imdbID) {
+        setErrorMessageOpen(true);
+        setShowResults(false);
+        setErrorMessageText(`${movie.Title} is already in the nominations list! Please select a different one`);
+        movieAlreadyInList = true;
+      }
+    }
+    if (movies.length < 5 && movieAlreadyInList === false) {
+        setMovies([...movies, movie]); 
+        setShowResults(false);
+    } else if (movies.length === 5 && movieAlreadyInList === false) {
       movies.pop();
       setMovies([...movies, movie]);
       setShowResults(false);    
@@ -95,6 +115,10 @@ const Game = () => {
 		}
 	}, [])
 
+  setTimeout(() => {
+    setErrorMessageOpen(false);
+  }, 20000);
+
   const searchMovies = async (search) => {
     const url = `https://www.omdbapi.com/?apikey=df39bfa7&s=${search}`
     const response = await fetch(url);
@@ -131,15 +155,13 @@ const Game = () => {
 
   const gameButtonVariants = movies.length === 5 ? "main-button" : "main-button-disabled";
   const buttonText = roundNumber === 5 ? "Finish Game" : "Next Round";
-  
-  console.log(roundNumber);
-  console.log(gameStatus);
-  
+
   return (
     gameStatus === 'finished' ?
-    <GameResults score={score} submissions={submissions} />
+    <GameResults score={score} submissions={submissions} errorMessageText={errorMessageText} />
     :
     <div className='game-wrapper'>
+      <ErrorBar  errorMessageOpen={errorMessageOpen} errorMessageText={errorMessageText} />
       <h1>Round {roundNumber}</h1>
       {
         roundEndMessage.message ?

@@ -1,7 +1,6 @@
 import './GameRules.css'
 import hero_image from "../img/hero_image.png"
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const GameRules = () => {
     return (
@@ -17,14 +16,7 @@ const GameRules = () => {
 					</div>
           <img src={hero_image} alt="" className='hero_image' />
           <Link to="/questions">
-            <motion.button
-            whileHover={{ scale: 1.2 }}
-            onHoverStart={e => {}}
-            onHoverEnd={e => {}}
-            whileTap={{ scale: 0.8 }} 
-            class="main-button">
-              Start
-            </motion.button>
+            <button class="main-button">Start</button>
           </Link>
 				</div>
     )

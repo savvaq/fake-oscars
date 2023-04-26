@@ -56,3 +56,9 @@
     grid-column-start: span 2;
     margin-top: 40px;
 }
+
+.game-results-wrapper > :last-child {
+    grid-column-start: span 2;
+    justify-self: center;
+    margin-top: 40px;
+}
