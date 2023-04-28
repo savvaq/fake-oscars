@@ -45,3 +45,10 @@
 .movie-search-result-img {
     width: 50px;
 }
+
+@media (max-width: 400px) {
+    .movie-search-results-wrapper {
+        width: 90%;
+        margin-top: -125%;
+    }
+}

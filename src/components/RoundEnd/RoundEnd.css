@@ -58,3 +58,52 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+@media (max-width: 400px) {
+    .round-end-winner {
+        width: 90%;
+        font-size: 12px;
+    }
+
+    .round-end-loser {
+        width: 90%;
+        font-size: 12px;
+    }
+
+    #round-end-icon-win {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+    }
+
+    #round-end-icon-lose {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+    }
+
+    #score-wrapper {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        justify-items: center;
+        margin-right: 5px;
+    }
+
+    #score-wrapper > span {
+        grid-row-start: 2;
+    }
+
+    #round-end-score {
+        margin-left: 0;
+        width: 100px;
+    }
+
+    .round-end-winner > p {
+        margin-left: 5px;
+    }
+
+    .round-end-loser > p {
+        margin-left: 5px;
+    }
+}

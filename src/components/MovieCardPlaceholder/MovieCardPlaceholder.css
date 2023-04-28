@@ -29,3 +29,10 @@
     width: 42px;
     height: 42px;
 }
+
+@media (max-width: 400px) {
+    .movie-card-placeholder {
+      height: 290px;
+      width: 140px;
+    }
+  }

@@ -17,7 +17,7 @@ const GameResults = (props) => {
 
     return (
         <div className='game-results-wrapper'>
-            <h1>Well Played!</h1>
+            <h1 id="game-results-heading">Well Played!</h1>
             <div id="final-score">
                 <p id="final-score-text">Your final score is</p>
                 <div id="final-score-number">{props.score} / 5</div>

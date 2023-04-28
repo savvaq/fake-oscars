@@ -34,3 +34,9 @@
     text-transform: uppercase;
     font-size: 12px;
   }
+
+@media (max-width: 400px) {
+    .searchbox-box {
+        width: 100%;
+    }
+}

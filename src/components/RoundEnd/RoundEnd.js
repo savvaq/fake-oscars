@@ -15,12 +15,12 @@ const RoundEnd = (props) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         >
-        <FontAwesomeIcon id={iconStyle} icon={icon} />
-        <p>{props.roundEndMessage.message}</p>
-        <div id="score-wrapper">
-            <span>Score</span>
-            <div id='round-end-score'>{props.score} / 5</div>
-        </div>
+            <FontAwesomeIcon id={iconStyle} icon={icon} />
+            <p>{props.roundEndMessage.message}</p>
+            <div id="score-wrapper">
+                <span>Score</span>
+                <div id='round-end-score'>{props.score} / 5</div>
+            </div>
         </motion.div>
 )};
 
