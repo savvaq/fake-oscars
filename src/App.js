@@ -4,8 +4,13 @@ import Footer from './components/Footer/Footer';
 import GameRules from './components/GameRules/GameRules' 
 import Game from './components/Game/Game';
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    document.title = "Fake Oscars Game";
+  }, []);
+
   return (
     <>
       <Header />
