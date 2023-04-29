@@ -35,6 +35,7 @@ const Game = () => {
   const [gameStatus, setGameStatus] = useState('playing');
   const [errorMessageOpen, setErrorMessageOpen] = useState(false);
   const [errorMessageText, setErrorMessageText] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const addMovie = (movie) => {
     let movieAlreadyInList = false;
@@ -94,6 +95,7 @@ const Game = () => {
 
   const AssignIMDBScore = async () => {
     for (let i = 0; i < movies.length; i++) {
+      setLoading(true);
       const url = `https://www.omdbapi.com/?apikey=df39bfa7&t=${movies[i].Title}`
       const response = await fetch(url);
       const responseJson = await response.json();
@@ -101,6 +103,7 @@ const Game = () => {
       if (movies[i].Title === responseJson.Title) {
         movies[i].IMDBScore = responseJson.imdbRating;
       }
+      setLoading(false);
     }
     updateScore();
   }
@@ -173,7 +176,7 @@ const Game = () => {
       showResults && searchValue.length > 0 ? 
       <SearchResults movies={searchResults} addMovie={addMovie} />:null
       }
-      <MovieList movies={movies} winner={winner} />
+      <MovieList movies={movies} winner={winner} loading={loading} />
       {
         roundEndMessage.message ? 
         <button onClick={() => startNewRound() & setRoundNumber(roundNumber + 1) & setRoundEndMessage('') & checkGameStatus() } 

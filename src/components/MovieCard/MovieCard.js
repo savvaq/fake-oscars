@@ -14,6 +14,24 @@ const MovieCard = (props) => {
       return title;
     }
   };
+
+  const imdbRatingDisplay = () => {
+    if (props.imdbScore) {
+      return <motion.div 
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "50%"],
+        }}
+        className='movie-score-wrapper'>{props.imdbScore}
+      </motion.div>
+    } else if (props.loading === true && !props.imdbScore) {
+      return <span class="loader"></span>
+    } else {
+      return <img src={question_icon} alt="imdb_logo" className='question_icon_img' />
+    }
+  }
+
   return (
       <div className={movieCardDivStyle}>
         <img src={props.image} alt="poster" className="movie-card-img" />          
@@ -28,18 +46,7 @@ const MovieCard = (props) => {
               <span>Rating</span>
             </div>
             <div className="imdb_rating_score">
-              {
-                props.imdbScore ? 
-                <motion.div 
-                animate={{
-                  scale: [1, 2, 2, 1, 1],
-                  rotate: [0, 0, 270, 270, 0],
-                  borderRadius: ["20%", "20%", "50%", "50%", "50%"],
-                }}
-                className='movie-score-wrapper'>{props.imdbScore}</motion.div> 
-                :
-                <img src={question_icon} alt="imdb_logo" className='question_icon_img' />
-              }
+              {imdbRatingDisplay()}
             </div>
           </div>
         </div>

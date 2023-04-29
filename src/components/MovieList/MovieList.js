@@ -13,7 +13,7 @@ const MovieList = (props) => {
 			exit={{ opacity: 0 }}
 			className='movie-list'>
 					{props.movies.map((movie) =>
-						<MovieCard key={movie.Title} image={movie.Poster} year={movie.Year} title={movie.Title} imdbScore={movie.IMDBScore} winner={movie.winner} />
+						<MovieCard key={movie.Title} image={movie.Poster} year={movie.Year} title={movie.Title} imdbScore={movie.IMDBScore} winner={movie.winner} loading={props.loading} />
 					)}
 					{props.movies.length === 4 ? <MovieCardPlaceholder /> : null}
 			</motion.div>
