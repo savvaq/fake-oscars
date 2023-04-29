@@ -7,6 +7,7 @@
     align-self: center;
     grid-template-rows: repeat(5,auto);
     grid-row-gap: 3rem;
+    position: relative;
 }
 
 .game-wrapper > h1 {

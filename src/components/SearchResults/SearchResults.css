@@ -2,12 +2,11 @@
     width: 560px;
     background-color: rgb(49, 48, 48);
     border-radius: 10px 10px 0 0;
-    grid-row-start: 3;
     position: absolute;
     height: 400px;
     overflow-y: scroll;
     z-index: 1;
-    top: 0;
+    bottom: 0;
 }
 
 .movie-search-result-wrapper {
