@@ -7,6 +7,9 @@
     align-self: center;
     grid-template-rows: repeat(5,auto);
     grid-row-gap: 3rem;
+}
+
+#search-and-search-results-wrapper {
     position: relative;
 }
 

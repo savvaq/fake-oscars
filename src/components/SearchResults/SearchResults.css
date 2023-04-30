@@ -6,6 +6,7 @@
     height: 400px;
     overflow-y: scroll;
     z-index: 1;
+
 }
 
 .movie-search-result-wrapper {
@@ -43,10 +44,4 @@
 
 .movie-search-result-img {
     width: 50px;
-}
-
-@media (max-width: 400px) {
-    .movie-search-results-wrapper {
-        width: 90%;
-    }
 }

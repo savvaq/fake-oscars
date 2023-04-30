@@ -166,16 +166,18 @@ const Game = () => {
     <div className='game-wrapper'>
       <ErrorBar  errorMessageOpen={errorMessageOpen} errorMessageText={errorMessageText} />
       <h1>Round {roundNumber}</h1>
-      {
-        roundEndMessage.message ?
-        <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
-        :
-        <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
-      }
-      {
-      showResults && searchValue.length > 0 ? 
-      <SearchResults movies={searchResults} addMovie={addMovie} />:null
-      }
+      <div id="search-and-search-results-wrapper">
+        {
+          roundEndMessage.message ?
+          <RoundEnd roundEndMessage={roundEndMessage} score={score}/>
+          :
+          <SearchBox search={searchValue} setSearch={setSearchValue} setShowResults={setShowResults} />
+        }
+        {
+        showResults && searchValue.length > 0 ? 
+        <SearchResults movies={searchResults} addMovie={addMovie} />:null
+        }
+      </div>
       <MovieList movies={movies} winner={winner} loading={loading} />
       {
         roundEndMessage.message ? 
