@@ -105,6 +105,7 @@
 .my-node-enter {
   opacity: 0;
 }
+
 .my-node-enter-active {
   opacity: 1;
   transition: opacity 200ms;
@@ -112,24 +113,45 @@
 
 @media (max-width: 400px) {
   .movie-card {
-    height: 290px;
-    width: 140px;
+    height: 60px;
+    width: 350px;
+    display: flex;
   }
 
   .movie-card-img {
-    height: 160px;
-    width: 140px;
-    border-top-right-radius: 15px;
+    height: 60px;
+    width: 60px;
     border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 0px;
   }
+
+  .movie-card-content {
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 1fr;
+    width: 100%;
+  }
+
+  .movie-card-text {
+    grid-column-start: 1;
+    grid-column-end: 2; 
+  }
+
+  .imdb_rating {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+
 
   .movie-card-text > h2 {
     font-size: 14px;
   }
 
   .movie-card-winner {
-    height: 290px;
-    width: 140px;
+    height: 60px;
+    width: 350px;
+    border: 4px solid green;
+    display: flex;
   }
 
   .imdb_logo_img {
@@ -147,6 +169,11 @@
     height: 35px;
     line-height: 35px;
     font-size: 16px;
+    margin-left: 0.5rem;
+  }
+
+  .question_icon_img {
+    margin-left: 0.5rem;
   }
 }
 
@@ -161,6 +188,7 @@
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  margin-left: 0.5rem;
   }
 
   @keyframes rotation {

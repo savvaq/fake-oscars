@@ -63,6 +63,7 @@
     .round-end-winner {
         width: 90%;
         font-size: 12px;
+        align-self: center;
     }
 
     .round-end-loser {

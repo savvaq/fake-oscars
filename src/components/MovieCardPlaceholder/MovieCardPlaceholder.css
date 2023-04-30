@@ -32,7 +32,13 @@
 
 @media (max-width: 400px) {
     .movie-card-placeholder {
-      height: 290px;
-      width: 140px;
+        height: 60px;
+        width: 350px;
+        display: flex;
+        flex-direction: row;
+    }
+    .film-icon {
+        width: 25px;
+        height: 25px;
     }
   }
