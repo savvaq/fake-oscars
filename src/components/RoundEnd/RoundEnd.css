@@ -59,16 +59,17 @@
     font-weight: bold;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .round-end-winner {
-        width: 90%;
+        width: 98%;
         font-size: 12px;
         align-self: center;
     }
 
     .round-end-loser {
-        width: 90%;
+        width: 98%;
         font-size: 12px;
+        align-self: center;
     }
 
     #round-end-icon-win {

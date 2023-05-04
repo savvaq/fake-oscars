@@ -30,7 +30,7 @@
     height: 42px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .movie-card-placeholder {
         height: 60px;
         width: 350px;

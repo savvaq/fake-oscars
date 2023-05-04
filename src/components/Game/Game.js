@@ -10,7 +10,7 @@ import ErrorBar from '../ErrorBar/ErrorBar';
 
 const GetMovie = async () => {
 	const randomNumber = Math.floor(Math.random() * 5);
-	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","airplane","snake","castle","water","titanic","harry"]
+	const randomWords = ["hello","ship","boy","mother","mountain","cocktail","soda","water","ice","fire","ear","airplane","snake","water","titanic","harry","slow","fiction","closed","fast"]
 	const randomWord = randomWords[Math.floor(Math.random() * randomWords.length)];
 	
 	const randomUrl = `https://www.omdbapi.com/?apikey=df39bfa7&s=${randomWord}`
@@ -109,7 +109,7 @@ const Game = () => {
   }
 
   useEffect(() => {
-		for (let i = 0; i < 4; i++) {
+		for (let i = 0; i < 2; i++) {
 			GetMovie().then((movie) => {
 				if (movies.length < 4) {
 					setMovies((movies) => [...movies, movie]);

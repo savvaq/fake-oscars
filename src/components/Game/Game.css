@@ -24,3 +24,13 @@
 #round-end-message {
     color: white;
 }
+
+@media (max-width: 420px) {
+    .game-wrapper > h1 {
+        font-size: 40px;
+    }
+
+    .game-wrapper {
+        grid-row-gap: 2rem;
+    }
+}
