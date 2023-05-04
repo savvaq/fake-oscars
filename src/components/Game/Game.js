@@ -109,7 +109,7 @@ const Game = () => {
   }
 
   useEffect(() => {
-		for (let i = 0; i < 2; i++) {
+		for (let i = 0; i < 4; i++) {
 			GetMovie().then((movie) => {
 				if (movies.length < 4) {
 					setMovies((movies) => [...movies, movie]);
